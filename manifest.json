@@ -1,0 +1,12 @@
+{
+  "name": "NotYet.uk",
+  "description": "An extension for NotYet.uk",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "author": "me@rrocha.uk",
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["src/index.js"],
+    "css": ["src/styles.css"]
+  }]
+}
