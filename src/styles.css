@@ -1,4 +1,4 @@
-.notyet-button {
+.notyet-amazon-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,4 +9,28 @@
     border-radius: 20px;
     color: black;
     margin: 10px 0;
+}
+
+.notyet-container {
+    width: 300px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.notyet-input-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.notyet-input-group .label {
+    font-size: 18px;
+}
+
+.notyet-input-group .input {
+    font-size: 20px;
+}
+
+.notyet-button {
+    display: block;
 }

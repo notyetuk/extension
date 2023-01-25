@@ -6,11 +6,16 @@
   "author": "me@rrocha.uk",
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["src/index.js"],
+    "js": ["src/index.js", "src/api.js"],
     "css": ["src/styles.css"]
   }],
   "web_accessible_resources": [{
     "matches": ["<all_urls>"],
     "resources": ["src/amazon.js", "src/request.js"]
-  }]
+  }],
+  "action": {
+    "default_popup": "src/options.html",
+    "default_tile": "NotYet.uk options"
+  },
+  "permissions": ["storage"]
 }
