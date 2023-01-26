@@ -1,4 +1,4 @@
-export function run(post) {
+export function run(request) {
   const buyBox = document.querySelector('#desktop_qualifiedBuyBox');
 
   if (!buyBox) return;
@@ -16,27 +16,23 @@ export function run(post) {
   buyBox.insertBefore(addToNotYet, buyBox.firstChild);
 
   addToNotYet.addEventListener('click', () => {
-    // const payload = {
-    //   title: itemTitle,
-    //   price: itemPrice.slice(1, itemPrice.length),
-    //   image: itemImage,
-    //   url: itemUrl,
-    // };
+    const payload = {
+      title: itemTitle,
+      price: itemPrice.slice(1, itemPrice.length),
+      image: itemImage,
+      url: itemUrl,
+    };
 
-    // post(payload);
-    displayModal();
+    displayModal(request, payload);
   });
 
-};
+}
 
-function displayModal() {
-  const lists = [
-    // { title: 'List 1', id: 'list1' },
-    // { title: 'List 2', id: 'list2' },
-    // { title: 'List 3', id: 'list3' },
-    // { title: 'List 4', id: 'list4' }
-  ];
+async function displayModal(request, payload) {
   const closeModal = new Event('close-modal');
+
+  let lists = await request('/api/lists', 'get');
+  lists = await lists.json();
 
   const modalWrapper = document.createElement('div');
   modalWrapper.classList.add('notyet-modal-wrapper');
@@ -53,7 +49,7 @@ function displayModal() {
   if (lists.length) {
     for (let list of lists) {
       const option = document.createElement('option');
-      option.value = list.id;
+      option.value = list['_id'];
       option.textContent = list.title;
       modalListSelect.appendChild(option);
     }
@@ -87,7 +83,11 @@ function displayModal() {
   document.querySelector('#notyet-modal-add-button').addEventListener('click', () => {
     const list = document.querySelector('#not-yet-list').value;
     if (list === '') return;
-    alert(`added to ${list}`);
+
+    const p = { ...payload };
+    p.list = list;
+
+    request('/api/item', 'post', p);
     removeModal();
   });
 }

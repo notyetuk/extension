@@ -1,14 +1,18 @@
-export async function post(payload) {
+export async function request(url, method, payload) {
   const apiKey = await storageGet('apiKey');
 
-  fetch('http://localhost:8081/api/item', {
-    method: 'post',
-    headers: {
-      'authorization': apiKey,
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(payload),
-  }).then(() => alert('item added to notyet.uk'));
+  const options = {};
+  options.method = method ?? 'get';
+  options.headers = {
+    'authorization': apiKey,
+    'content-type': 'application/json'
+  };
+
+  if (payload) {
+    options.body = JSON.stringify(payload);
+  }
+
+  return fetch(`http://localhost:8081${url}`, options);
 }
 
 export function storagePut(key, value) {

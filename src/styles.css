@@ -49,10 +49,23 @@
 }
 
 .notyet-modal-wrapper .modal {
-    width: 450px;
-    height: 250px;
+    min-width: 300px;
+    max-width: 450px;
+    height: auto;
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
+    display: grid;
+    row-gap: 10px;
+}
+
+.notyet-modal-wrapper .modal select {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.notyet-modal-wrapper .modal button {
+    display: block;
+    padding: 5px 10px;
 }

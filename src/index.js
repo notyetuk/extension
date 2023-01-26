@@ -19,10 +19,10 @@ async function run() {
   const src = chrome.runtime.getURL(stores[store]);
   const runner = await import(src);
 
-  const request = chrome.runtime.getURL('src/request.js');
-  const { post } = await import(request);
+  const requestSrc = chrome.runtime.getURL('src/request.js');
+  const { request } = await import(requestSrc);
 
-  runner.run(post);
+  runner.run(request);
 }
 
 setTimeout(run, 250);
