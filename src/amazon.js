@@ -16,14 +16,78 @@ export function run(post) {
   buyBox.insertBefore(addToNotYet, buyBox.firstChild);
 
   addToNotYet.addEventListener('click', () => {
-    const payload = {
-      title: itemTitle,
-      price: itemPrice.slice(1, itemPrice.length),
-      image: itemImage,
-      url: itemUrl,
-    };
+    // const payload = {
+    //   title: itemTitle,
+    //   price: itemPrice.slice(1, itemPrice.length),
+    //   image: itemImage,
+    //   url: itemUrl,
+    // };
 
-    post(payload);
+    // post(payload);
+    displayModal();
   });
 
 };
+
+function displayModal() {
+  const lists = [
+    // { title: 'List 1', id: 'list1' },
+    // { title: 'List 2', id: 'list2' },
+    // { title: 'List 3', id: 'list3' },
+    // { title: 'List 4', id: 'list4' }
+  ];
+  const closeModal = new Event('close-modal');
+
+  const modalWrapper = document.createElement('div');
+  modalWrapper.classList.add('notyet-modal-wrapper');
+  modalWrapper.id = 'notyet-modal-wrapper';
+
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  const modalTitle = document.createElement('h3');
+  modalTitle.textContent = 'Select a List';
+
+  const modalListSelect = document.createElement('select');
+  modalListSelect.id = 'not-yet-list';
+  if (lists.length) {
+    for (let list of lists) {
+      const option = document.createElement('option');
+      option.value = list.id;
+      option.textContent = list.title;
+      modalListSelect.appendChild(option);
+    }
+  }
+
+  const modalButton = document.createElement('button');
+  modalButton.id = 'notyet-modal-add-button';
+  modalButton.textContent = 'Add';
+
+  modal.appendChild(modalTitle);
+  modal.appendChild(modalListSelect);
+  modal.appendChild(modalButton);
+
+  modalWrapper.appendChild(modal);
+  document.body.appendChild(modalWrapper);
+  document.body.style.overflow = 'hidden';
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.dispatchEvent(closeModal);
+    }
+  });
+
+  const removeModal = () => {
+    document.body.removeChild(modalWrapper);
+    document.body.style.overflow = 'scroll';
+    document.removeEventListener('close-modal', removeModal);
+  }
+
+  document.addEventListener('close-modal', removeModal);
+  document.querySelector('#notyet-modal-add-button').addEventListener('click', () => {
+    const list = document.querySelector('#not-yet-list').value;
+    if (list === '') return;
+    alert(`added to ${list}`);
+    removeModal();
+  });
+}
