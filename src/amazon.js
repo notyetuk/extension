@@ -23,7 +23,7 @@ export function run(request) {
       url: itemUrl,
     };
 
-    displayModal(request, payload);
+    void displayModal(request, payload);
   });
 
 }
@@ -45,7 +45,7 @@ async function displayModal(request, payload) {
   modalTitle.textContent = 'Select a List';
 
   const modalListSelect = document.createElement('select');
-  modalListSelect.id = 'not-yet-list';
+  modalListSelect.id = 'notyet-list';
   if (lists.length) {
     for (let list of lists) {
       const option = document.createElement('option');
@@ -81,7 +81,7 @@ async function displayModal(request, payload) {
 
   document.addEventListener('close-modal', removeModal);
   document.querySelector('#notyet-modal-add-button').addEventListener('click', () => {
-    const list = document.querySelector('#not-yet-list').value;
+    const list = document.querySelector('#notyet-list').value;
     if (list === '') return;
 
     const p = { ...payload };

@@ -1,9 +1,12 @@
 function onPopUpOpen() {
   const input = document.querySelector('#api-key');
   const button = document.querySelector('#save-api-key');
+  const showButton = document.querySelector('#notyet-show-button');
 
   button.addEventListener('click', () => saveApiKey(input.value));
-  loadApiKey(input);
+  showButton.addEventListener('click', () => toggleApiKey(input));
+
+  void loadApiKey(input);
 }
 
 document.addEventListener('DOMContentLoaded', onPopUpOpen);
@@ -20,4 +23,8 @@ async function loadApiKey(input) {
   const { storageGet } = await import(src);
 
   input.value = await storageGet('apiKey');
+}
+
+function toggleApiKey(input) {
+  input.type === 'text' ? input.type = 'password' : input.type = 'text';
 }
