@@ -13,9 +13,12 @@
       <label class="label" for="api-key">Api key</label>
       <div style="display: flex; align-items: center; position: relative;">
         <input class="input" id="api-key" name="api-key" type="password">
-        <button id="notyet-show-button" class="notyet-show-button"></button>
+        <button id="notyet-show-button" class="notyet-show-button">
+          <img class="notyet-eye" id="notyet-eye" src="eye-open.svg" alt="eye">
+        </button>
       </div>
       <button class="notyet-button" id="save-api-key">Save</button>
+      <span id="notyet-success" class="notyet-success">API Key saved</span>
     </div>
   </div>
   <script src="api.js"></script>

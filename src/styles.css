@@ -13,8 +13,13 @@
 
 .notyet-container {
     width: 300px;
-    height: 100px;
+    height: auto;
     border-radius: 20px;
+}
+
+.notyet-success {
+    color: green;
+    display: none;
 }
 
 .notyet-input-group {
@@ -34,8 +39,8 @@
 }
 
 .notyet-button {
-    display: block;
-    width: 20%;
+    padding: 10px;
+
 }
 
 .notyet-modal-wrapper {
@@ -58,17 +63,27 @@
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
+    padding: 30px 40px;
     display: grid;
     row-gap: 10px;
 }
 
 .notyet-show-button {
     position: absolute;
+    cursor: pointer;
     right: 5px;
-    width: 20px;
-    height: 20px;
-    background: #FCD200;
+    width: 16px;
+    height: 16px;
     outline: none;
     border: none;
+    border-radius: 5px;
+    background: transparent;
+}
+
+.notyet-eye {
+    width: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
